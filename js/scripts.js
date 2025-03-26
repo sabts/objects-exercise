@@ -21,17 +21,15 @@ const extractConsonats = words => {
 };
 
 const fillTowerData = sentence => {
-  console.log(sentence);
-  const vowels = extractVowels(words);
-  const levelOne = vowels;
+  //const vowels = extractVowels(words);
+  const levelOne = extractVowels(sentence);
   const levelTwo = extractConsonats(sentence);
-  console.log(levelOne);
+  //   console.log(levelOne);
   console.log(levelTwo);
 };
 
 const towerData = {
   levelOne: {
-    sentence: "1️⃣ Nivel Uno: La Cámara de las Voces Perdidas",
     vowels: [], // Vocales extraídas
   },
   levelTwo: {
@@ -65,4 +63,6 @@ const towerData = {
 };
 
 console.log(towerData.levelOne.sentence);
-console.log(towerData.levelTwo);
+fillTowerData("La Cámara de las Voces Perdidas");
+
+console.log(towerData);
