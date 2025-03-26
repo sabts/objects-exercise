@@ -20,6 +20,10 @@ const extractConsonats = words => {
   return extractEach;
 };
 
+const sentenceNormalOrder = words => {
+  let normalOrder = [];
+};
+
 const fillTowerData = sentence => {
   //const vowels = extractVowels(words);
   const levelOne = extractVowels(sentence);
