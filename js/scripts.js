@@ -155,7 +155,19 @@ const invertLevel3Words = (keywords) =>{
 //Los suma de los números generados en towerData.levelSeven.totalLength dividido entre 2.
 //Un número aleatorio entre 1000 y 9999.
 //Almacena el código generado en towerData.levelNine.randomCode.
+const firstLetterOfInvertWords = (words,numbers) =>{
+  let uniqueCode='';
+  const randomNumbers = Math.floor(Math.random()*9999+1000)
+  const floorDivision = numbers / 2;
 
+  for (const word of words) {
+   uniqueCode += word.charAt(0);
+  }
+  
+  uniqueCode += floorDivision + randomNumbers
+
+return uniqueCode
+}
 
 
 // 🔟 Nivel Diez: La Prueba Suprema - El Guardián del Código Final
@@ -191,6 +203,9 @@ const fillTowerData = sentence => {
   const levelEight = invertLevel3Words(levelThree)
   towerData.levelEight.reversedWords = levelEight;
 
+  const levelNine = firstLetterOfInvertWords(levelEight, levelSeven)
+  towerData.levelNine.randomCode = levelNine;
+
   console.log('Nivel 1 ' +levelOne);
   console.log('Nivel 2 ' +levelTwo);
   console.log('Nivel 3 ' +levelThree);
@@ -199,6 +214,7 @@ const fillTowerData = sentence => {
   console.log('Nivel 6 ' +levelSix);
   console.log('Nivel 7 ' +levelSeven);
   console.log('Nivel 8 ' +levelEight);
+  console.log('Nivel 9 ' +levelNine);
 };
 
 fillTowerData("Departamento de los Fututos Programadores Torturados");
