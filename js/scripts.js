@@ -182,6 +182,7 @@ const totalSumOfAllLevels = (vowels, level7Length, consonants, randomNumbers, te
   
   const totalWords = text.length
 
+
   const numbersOfWords = secretcodeLength.length; 
 
  
@@ -189,7 +190,7 @@ const totalSumOfAllLevels = (vowels, level7Length, consonants, randomNumbers, te
                     (totalConsonants - randomNumbers) - 
                     (totalWords * numbersOfWords);
 
-  return finalCode  // No importa lo que haga, me da NaN o Error. Te preguntare más tarde en el discord o mañana
+  return finalCode  // No importa lo que haga, me da NaN o Error. Te preguntare más tarde en el discord o mañana // al final en el ejecutador hice un sub para que solo leyera los numeros pero no se si es la respuesta...
 };
 
 // Ejecutador de funciones
@@ -222,7 +223,7 @@ const fillTowerData = sentence => {
   const levelNine = firstLetterOfInvertWords(levelEight, levelSeven)
   towerData.levelNine.randomCode = levelNine;
 
-  const levelTen = totalSumOfAllLevels(levelOne, levelSeven, levelTwo, levelNine, levelThree, levelSix);
+  const levelTen = totalSumOfAllLevels(levelOne, levelSeven, levelTwo, levelNine.substring(6,11), levelThree, levelSix);
   towerData.levelTen.finalMessage = levelTen;
 
   console.log('Nivel 1 ' +levelOne);
