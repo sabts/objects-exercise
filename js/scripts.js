@@ -131,6 +131,23 @@ const totalSumOfLevel4 = (words) =>{
 }
 
 
+//8️⃣ Nivel Ocho: El Reflejo Invertido
+//Invierte cada palabra del array towerData.levelThree.words y guárdalas en towerData.levelEight.reversedWords.
+
+//9️⃣ Nivel Nueve: La Cámara del Códex Aleatorio
+//Genera un código único combinando:
+//La primera letra de cada palabra invertida (nivel 8).
+//Los suma de los números generados en towerData.levelSeven.totalLength dividido entre 2.
+//Un número aleatorio entre 1000 y 9999.
+//Almacena el código generado en towerData.levelNine.randomCode.
+
+
+// 🔟 Nivel Diez: La Prueba Suprema - El Guardián del Código Final
+//Usa TODOS los valores obtenidos en los niveles anteriores para generar un código maestro único.
+//La fórmula del código maestro será la siguiente:
+//finalMessage = (Total de vocales _ Longitud total obtenida en el nivel 7) + (Cantidad de consonantes _ Número aleatorio generado en Nivel 9) - (Número de palabras * Número de caracteres en el mensaje secreto)
+
+
 // Ejecutador de funciones
 const fillTowerData = sentence => {
   const levelOne = extractVowels(sentence);
