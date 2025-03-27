@@ -31,11 +31,13 @@ const towerData = {
     finalMessage: "", // Código final calculado usando todos los niveles
   },
 };
+const vowels = "AaEeIiOoUu";
+const consonants = "BbCcDdFfGgHhJjKkLlMmNnÑñPpQqRrSsTtVvXxZzWwYy";
+const alphabet = "abcdefghijklmnñopqrstuvwxyz";
 
 //1️⃣ Nivel Uno: La Cámara de las Voces Perdidas
 //Extrae todas las vocales de la frase introducida y almacénalas en towerData.levelOne.vowels.
 const extractVowels = words => {
-  const vowels = "AaEeIiOoUu";
   let extractEach = [];
   for (const word of words) {
     if (vowels.includes(word)) {
@@ -48,10 +50,9 @@ const extractVowels = words => {
 //2️⃣ Nivel Dos: La Biblioteca de Consonantes Prohibidas
 //Extrae todas las consonantes de la frase y almacénalas en towerData.levelTwo.consonants.
 const extractConsonats = words => {
-  const consonats = "BbCcDdFfGgHhJjKkLlMmNnÑñPpQqRrSsTtVvXxZzWwYy";
   let extractEach = [];
   for (const word of words) {
-    if (consonats.includes(word)) {
+    if (consonants.includes(word)) {
       extractEach.push(word);
     }
   }
@@ -96,36 +97,38 @@ return uppercasedWords
 //Espacios se reemplazan por una letra aleatoria del alfabeto.
 //Guarda el resultado en towerData.levelSix.secretMessage.
 const VowelToNumberSecretEncryptor = (messages) => {
-  const consonats = "bcdfghjklmnñpqrstvwxyz";
-  const alphabet = "abcdefghijklmnñopqrstuvwxyz";
   let secretMessage = messages;
+  let finalMessage = '';
 
-  secretMessage = secretMessage.replaceAll(/a/gi, "1");
-  secretMessage = secretMessage.replaceAll(/e/gi, "2");
-  secretMessage = secretMessage.replaceAll(/i/gi, "3");
-  secretMessage = secretMessage.replaceAll(/o/gi, "4");
-  secretMessage = secretMessage.replaceAll(/u/gi, "5");
+
+  secretMessage = messages.replaceAll(/a/gi, "1").replaceAll(/e/gi, "2")
+  .replaceAll(/i/gi, "3").replaceAll(/o/gi, "4").replaceAll(/u/gi, "5");
   
-  let encrypConsonat = '';
-  for (const message of messages) {
-    encrypConsonat = alphabet.charAt(length-1) ;
-    
+  for (const letter of secretMessage.toLowerCase()) {
+      if(letter === 'b' || letter === 'B') 
+        {
+        finalMessage += 'z';
+      }
+      else if (consonants.includes(letter)) 
+        {
+          finalMessage += consonants.charAt(consonants.indexOf(letter));
+      }
+       else if (letter === ' '){
+        secretMessage += alphabet.charAt(Math.floor(Math.random() *alphabet.length))
+      }
+    else {
+      finalMessage += letter}
   }
-
-  secretMessage = secretMessage.replace(/ /g, () => {
-    const randomLetter = Math.floor(Math.random() * alphabet.length);
-
-    return alphabet[randomLetter];
-  })
-  
-  return secretMessage;  // 
+  return finalMessage
 }
+
 
 
 //7️⃣ Nivel Siete: El Oráculo de la Suma
 //Calcula la suma total de las longitudes de todas las palabras obtenidas en el nivel 4 y almacénalo en //towerData.levelSeven.totalLength.
 const totalSumOfLevel4 = (words) =>{
-  const wordsLengths = levelFour
+  const wordsLengths = towerData.levelFour.wordLengths;
+  //for()
   let totalLength = 0;
 
 }
@@ -151,11 +154,24 @@ const totalSumOfLevel4 = (words) =>{
 // Ejecutador de funciones
 const fillTowerData = sentence => {
   const levelOne = extractVowels(sentence);
+  towerData.levelOne.vowels = levelOne;
+
   const levelTwo = extractConsonats(sentence);
+  towerData.levelTwo.consonants = levelTwo
+
   const levelThree = fragmentedWords (sentence);
+  towerData.levelThree.words = levelThree;
+
   const levelFour = lengthCalculator(levelThree);
+  towerData.levelFour.wordLengths = levelFour;
+
   const levelFive = saveCapitalLetters(levelThree);
+  towerData.levelFive.uppercasedWords = levelFive.uppercasedWords;
+  towerData.levelFive.lowercasedWords = levelFive.lowercasedWords;
+
   const levelSix = VowelToNumberSecretEncryptor(sentence);
+  towerData.levelSix.secretMessage = levelSix;
+
   console.log('Nivel 1 ' +levelOne);
   console.log('Nivel 2 ' +levelTwo);
   console.log('Nivel 3 ' +levelThree);
@@ -164,6 +180,7 @@ const fillTowerData = sentence => {
   console.log('Nivel 6 ' +levelSix);
 };
 
-fillTowerData("Departamento de los Programadores Torturados");
+fillTowerData("Departamento de los Fututos Programadores Torturados");
+towerData.levelOne.vowels = fillTowerData
 
 console.log(towerData);
