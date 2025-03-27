@@ -114,7 +114,7 @@ const VowelToNumberSecretEncryptor = (messages) => {
       }
       else if (consonants.includes(letter)) 
         {
-          finalMessage += consonants.charAt(consonants.indexOf(letter));
+          finalMessage += consonants.charAt(consonants.indexOf(letter)+1);
       }
        else if (letter === ' '){
         secretMessage += alphabet.charAt(Math.floor(Math.random() *alphabet.length))
@@ -139,6 +139,15 @@ return totalSum
 
 //8️⃣ Nivel Ocho: El Reflejo Invertido
 //Invierte cada palabra del array towerData.levelThree.words y guárdalas en towerData.levelEight.reversedWords.
+const invertLevel3Words = (keywords) =>{
+  reverseText = [];
+
+  for (const keyword of keywords) {
+    const reverseWords = keyword.split("").reverse().join("");
+    reverseText.push(reverseWords)
+  }
+  return reverseText
+}
 
 //9️⃣ Nivel Nueve: La Cámara del Códex Aleatorio
 //Genera un código único combinando:
@@ -146,6 +155,7 @@ return totalSum
 //Los suma de los números generados en towerData.levelSeven.totalLength dividido entre 2.
 //Un número aleatorio entre 1000 y 9999.
 //Almacena el código generado en towerData.levelNine.randomCode.
+
 
 
 // 🔟 Nivel Diez: La Prueba Suprema - El Guardián del Código Final
@@ -178,6 +188,9 @@ const fillTowerData = sentence => {
   const levelSeven = totalSumOfLevel4(levelFour)
   towerData.levelSeven.totalLength = levelSeven;
 
+  const levelEight = invertLevel3Words(levelThree)
+  towerData.levelEight.reversedWords = levelEight;
+
   console.log('Nivel 1 ' +levelOne);
   console.log('Nivel 2 ' +levelTwo);
   console.log('Nivel 3 ' +levelThree);
@@ -185,6 +198,7 @@ const fillTowerData = sentence => {
   console.log('Nivel 5 ' +levelFive);
   console.log('Nivel 6 ' +levelSix);
   console.log('Nivel 7 ' +levelSeven);
+  console.log('Nivel 8 ' +levelEight);
 };
 
 fillTowerData("Departamento de los Fututos Programadores Torturados");
