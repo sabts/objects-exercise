@@ -85,7 +85,10 @@ for (const word of capitals) {
   lowercasedWords.push(word.toLowerCase())
   uppercasedWords.push(word.toUpperCase())
 }
-return uppercasedWords
+return {
+  uppercasedWords: uppercasedWords,
+  lowercasedWords: lowercasedWords
+};
 }
 
 //6️⃣ Nivel Seis: El Encriptador de Secretos
@@ -122,17 +125,17 @@ const VowelToNumberSecretEncryptor = (messages) => {
   return finalMessage
 }
 
-
-
 //7️⃣ Nivel Siete: El Oráculo de la Suma
 //Calcula la suma total de las longitudes de todas las palabras obtenidas en el nivel 4 y almacénalo en //towerData.levelSeven.totalLength.
 const totalSumOfLevel4 = (words) =>{
   const wordsLengths = towerData.levelFour.wordLengths;
-  //for()
-  let totalLength = 0;
+  let totalSum = 0;
 
+  for(let i = 0; i< wordsLengths.length; i++){
+    totalSum += wordsLengths[i];
+  }
+return totalSum
 }
-
 
 //8️⃣ Nivel Ocho: El Reflejo Invertido
 //Invierte cada palabra del array towerData.levelThree.words y guárdalas en towerData.levelEight.reversedWords.
@@ -172,12 +175,16 @@ const fillTowerData = sentence => {
   const levelSix = VowelToNumberSecretEncryptor(sentence);
   towerData.levelSix.secretMessage = levelSix;
 
+  const levelSeven = totalSumOfLevel4(levelFour)
+  towerData.levelSeven.totalLength = levelSeven;
+
   console.log('Nivel 1 ' +levelOne);
   console.log('Nivel 2 ' +levelTwo);
   console.log('Nivel 3 ' +levelThree);
   console.log('Nivel 4 ' +levelFour);
   console.log('Nivel 5 ' +levelFive);
   console.log('Nivel 6 ' +levelSix);
+  console.log('Nivel 7 ' +levelSeven);
 };
 
 fillTowerData("Departamento de los Fututos Programadores Torturados");
