@@ -179,10 +179,10 @@ return uniqueCode
 const totalSumOfAllLevels = (vowels, level7Length, consonants, randomNumbers, text, secretcodeLength) => {
   const totalVowels = vowels.length; 
   const totalConsonants = consonants.length; 
+  
+  const totalWords = text.length
 
   const numbersOfWords = secretcodeLength.length; 
-
-  const totalWords = text.length
 
  
   const finalCode = (totalVowels - level7Length) +   
