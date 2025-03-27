@@ -176,17 +176,21 @@ return uniqueCode
 // (Total de vocales - Longitud total obtenida en el nivel 7) 
 // + (Cantidad de consonantes - Número aleatorio generado en Nivel 9)
 //  - (Número de palabras * Número de caracteres en el mensaje secreto)
-const totalSumOfAllLevels = (vowels, level7Length, consonants, randomNumbers, text, secretcodeLength) =>{
-  const totalVowels = vowels.length;
-  const totalConsonants = consonants.length;
-  const numbersOfWords = secretcodeLength.split(' ').length;
-  const totalWords = text.length;
-  const totalCharacters = secretcodeLength.length;
+const totalSumOfAllLevels = (vowels, level7Length, consonants, randomNumbers, text, secretcodeLength) => {
+  const totalVowels = vowels.length; 
+  const totalConsonants = consonants.length; 
 
-  const finalCode = totalVowels - level7Length + totalConsonants - randomNumbers - (totalWords * totalCharacters);
+  const numbersOfWords = secretcodeLength.length; 
+
+  const totalWords = text.length
+
  
-  return finalCode
-}
+  const finalCode = (totalVowels - level7Length) +   
+                    (totalConsonants - randomNumbers) - 
+                    (totalWords * numbersOfWords);
+
+  return finalCode  // No importa lo que haga, me da NaN o Error. Te preguntare más tarde en el discord o mañana
+};
 
 // Ejecutador de funciones
 const fillTowerData = sentence => {
@@ -218,7 +222,7 @@ const fillTowerData = sentence => {
   const levelNine = firstLetterOfInvertWords(levelEight, levelSeven)
   towerData.levelNine.randomCode = levelNine;
 
-  const levelTen = totalSumOfAllLevels(levelOne,levelSeven, levelTwo, levelNine,levelThree,levelSix);
+  const levelTen = totalSumOfAllLevels(levelOne, levelSeven, levelTwo, levelNine, levelThree, levelSix);
   towerData.levelTen.finalMessage = levelTen;
 
   console.log('Nivel 1 ' +levelOne);
