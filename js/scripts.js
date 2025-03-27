@@ -157,7 +157,7 @@ const invertLevel3Words = (keywords) =>{
 //Almacena el código generado en towerData.levelNine.randomCode.
 const firstLetterOfInvertWords = (words,numbers) =>{
   let uniqueCode='';
-  const randomNumbers = Math.floor(Math.random()*9999+1000)
+  const randomNumbers = Math.floor(Math.random()*9000)+1000;
   const floorDivision = numbers / 2;
 
   for (const word of words) {
@@ -169,12 +169,24 @@ const firstLetterOfInvertWords = (words,numbers) =>{
 return uniqueCode
 }
 
-
 // 🔟 Nivel Diez: La Prueba Suprema - El Guardián del Código Final
 //Usa TODOS los valores obtenidos en los niveles anteriores para generar un código maestro único.
 //La fórmula del código maestro será la siguiente:
-//finalMessage = (Total de vocales _ Longitud total obtenida en el nivel 7) + (Cantidad de consonantes _ Número aleatorio generado en Nivel 9) - (Número de palabras * Número de caracteres en el mensaje secreto)
+//finalMessage = 
+// (Total de vocales - Longitud total obtenida en el nivel 7) 
+// + (Cantidad de consonantes - Número aleatorio generado en Nivel 9)
+//  - (Número de palabras * Número de caracteres en el mensaje secreto)
+const totalSumOfAllLevels = (vowels, level7Length, consonants, randomNumbers, text, secretcodeLength) =>{
+  const totalVowels = vowels.length;
+  const totalConsonants = consonants.length;
+  const numbersOfWords = secretcodeLength.split(' ').length;
+  const totalWords = text.length;
+  const totalCharacters = secretcodeLength.length;
 
+  const finalCode = totalVowels - level7Length + totalConsonants - randomNumbers - (totalWords * totalCharacters);
+ 
+  return finalCode
+}
 
 // Ejecutador de funciones
 const fillTowerData = sentence => {
@@ -206,6 +218,9 @@ const fillTowerData = sentence => {
   const levelNine = firstLetterOfInvertWords(levelEight, levelSeven)
   towerData.levelNine.randomCode = levelNine;
 
+  const levelTen = totalSumOfAllLevels(levelOne,levelSeven, levelTwo, levelNine,levelThree,levelSix);
+  towerData.levelTen.finalMessage = levelTen;
+
   console.log('Nivel 1 ' +levelOne);
   console.log('Nivel 2 ' +levelTwo);
   console.log('Nivel 3 ' +levelThree);
@@ -215,6 +230,7 @@ const fillTowerData = sentence => {
   console.log('Nivel 7 ' +levelSeven);
   console.log('Nivel 8 ' +levelEight);
   console.log('Nivel 9 ' +levelNine);
+  console.log('Nivel 10 ' +levelTen);
 };
 
 fillTowerData("Departamento de los Fututos Programadores Torturados");
