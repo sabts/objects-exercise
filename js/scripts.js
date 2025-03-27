@@ -239,6 +239,6 @@ const fillTowerData = sentence => {
 };
 
 fillTowerData("Departamento de los Fututos Programadores Torturados");
-towerData.levelOne.vowels = fillTowerData
+//towerData.levelOne.vowels = fillTowerData
 
 console.log(towerData);
